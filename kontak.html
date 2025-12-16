@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kontak - UMKM James Boogie</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top" style="background-color: #212529;">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center" href="index.html">
+                    <span class="ms-2">JAMES BOOGIE</span>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html"
+                                style="color: white; background-color: transparent;">Beranda</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="tentang.html"
+                                style="color: white; background-color: transparent;">Tentang Kami</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="produk.html"
+                                style="color: white; background-color: transparent;">Produk</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="galeri.html"
+                                style="color: white; background-color: transparent;">Galeri</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="kontak.html"
+                                style="background-color: #2e8b57; color: white; border-bottom: 3px solid white;">Kontak</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <h2 class="text-center mb-3">Hubungi James Boogie</h2>
+                <p class="text-center lead mb-4">Silakan isi formulir berikut untuk menghubungi tim James Boogie</p>
+
+                <div id="errorMsg" class="alert alert-danger d-none" role="alert"></div>
+                <div id="successMsg" class="alert alert-success d-none" role="alert"></div>
+
+                <form id="formkontak" onsubmit="return false;" class="p-4 border rounded shadow-sm">
+
+                    <div class="mb-3">
+                        <label for="nama" class="form-label">Nama:</label>
+                        <input type="text" id="nama" name="nama" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email:</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="Kategori" class="form-label">Kategori pesan:</label>
+                        <select name="Kategori" id="Kategori" class="form-select" required>
+                            <option value="">--Pilih Kategori--</option>
+                            <option value="produk">Produk</option>
+                            <option value="layanan">Layanan</option>
+                            <option value="kerjasama">Kerjasama</option>
+                            <option value="lainnya">Lainnya</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="pesan" class="form-label">Pesan:</label>
+                        <textarea name="pesan" id="pesan" rows="5" class="form-control" required></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="telepon" class="form-label">Nomor telepon (Nomor HP):</label>
+                        <input type="tel" id="telepon" name="telepon" class="form-control">
+                    </div>
+
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" id="langganan" class="form-check-input">
+                        <label for="langganan" class="form-check-label">Berlangganan newsletter</label>
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                        <button type="submit" id="submitBtn" class="btn btn-primary me-md-2"
+                            style="background-color: #2e8b57; border-color: #2e8b57;">Kirim</button>
+                        <button type="reset" id="clearBtn" class="btn btn-outline-secondary">Reset</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </main>
+    <footer class="bg-dark text-white text-center py-3 mt-5">
+        <div class="container">
+            <p class="mb-0">&copy; 2025 James Boogie. Semua hak dilindungi.</p>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const form = document.getElementById("formkontak");
+            const nama = document.getElementById("nama");
+            const email = document.getElementById("email");
+            const pesan = document.getElementById("pesan");
+            const telepon = document.getElementById("telepon");
+            const submitBtn = document.getElementById("submitBtn");
+            const clearBtn = document.getElementById("clearBtn");
+
+            const errorMsg = document.getElementById("errorMsg");
+            const successMsg = document.getElementById("successMsg");
+
+            function showMessage(element, message, type) {
+                errorMsg.classList.add('d-none');
+                successMsg.classList.add('d-none');
+
+                if (type === 'error') {
+                    errorMsg.textContent = message;
+                    errorMsg.classList.remove('d-none');
+                } else if (type === 'success') {
+                    successMsg.textContent = message;
+                    successMsg.classList.remove('d-none');
+                }
+            }
+
+
+            form.addEventListener("submit", (e) => {
+                e.preventDefault();
+                showMessage(null, "", 'none');
+
+                if (!nama.value.trim() || !email.value.trim() || !pesan.value.trim() || !telepon.value.trim()) {
+                    showMessage(errorMsg, "⚠ Mohon lengkapi semua bidang wajib (Nama, Email, Pesan, Nomor Telepon).", 'error');
+                    return;
+                }
+
+                if (!/^[0-9]+$/.test(telepon.value.trim())) {
+                    showMessage(errorMsg, "⚠ Nomor Telepon hanya boleh berisi angka.", 'error');
+                    return;
+                }
+
+                showMessage(successMsg, "✅ Pesan berhasil dikirim! Terima kasih telah menghubungi James Boogie.", 'success');
+                form.reset();
+            });
+
+
+            clearBtn.addEventListener("click", () => {
+                form.reset();
+                showMessage(null, "", 'none');
+            });
+
+        });
+    </script>
+    <script type="module" src="utils.js"></script>
+    <script type="module" src="form1.js"></script>
+    <script type="module" src="newsletter.js"></script>
+</body>
+
+</html>

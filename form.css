@@ -1,0 +1,38 @@
+body {
+    font-family: Arial;
+    max-width: 450px;
+    margin: 40px auto;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input, select {
+    padding: 10px;
+    font-size: 16px;
+}
+
+.error {
+    color: red;
+    font-size: 13px;
+    min-height: 16px;
+}
+
+button {
+    padding: 12px;
+    font-size: 16px;
+    background: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
